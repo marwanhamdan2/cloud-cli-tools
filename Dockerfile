@@ -16,6 +16,11 @@ RUN apk add docker docker-compose
 RUN curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_CTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
+#install kubeval
+RUN wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+RUN tar xf kubeval-linux-amd64.tar.gz
+RUN cp kubeval /usr/local/bin
+
 # install aws cli v2
 ENV GLIBC_VER=2.31-r0
 RUN curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub \
