@@ -7,7 +7,12 @@ ENV LC_ALL=en_US.UTF-8
 # install base  tools
 RUN apk update \
     && apk -Uuv add make gcc groff less musl-dev libffi-dev openssl-dev python2-dev py-pip \
-    && apk add ca-certificates bash git yarn curl python3 
+    && apk add ca-certificates bash git yarn curl python3
+
+RUN  apk add alpine-sdk python3-dev postgresql-dev
+
+# install npm
+RUN apk add npm
 
 #install docker & docker-compose
 RUN apk add docker docker-compose
@@ -48,6 +53,8 @@ RUN ([ -f /usr/bin/sops ] || (wget -q -O /usr/bin/sops https://github.com/mozill
 
 # install lerna
 RUN yarn global add lerna
+
+RUN npm install -g @commitlint/cli @commitlint/config-conventional
 
 # shell functions
 RUN git clone https://github.com/sharkdp/shell-functools /tmp/shell-functools
