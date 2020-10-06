@@ -62,6 +62,8 @@ RUN git clone https://github.com/sharkdp/shell-functools /tmp/shell-functools
 # change default bash
 RUN sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd
 
+RUN apk add jq
+
 RUN apk --purge -v del py-pip \
     && rm -rf /var/cache/*/* \
     && echo "" > /root/.ash_history
