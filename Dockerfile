@@ -59,6 +59,12 @@ RUN npm install -g @commitlint/cli @commitlint/config-conventional
 # shell functions
 RUN git clone https://github.com/sharkdp/shell-functools /tmp/shell-functools
 
+# install helmv3
+
+RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+RUN chmod 700 get_helm.sh
+RUN ./get_helm.sh
+
 # change default bash
 RUN sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd
 
